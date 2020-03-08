@@ -1,5 +1,4 @@
 import React from 'react';
-import isAscii from 'validator/es/lib/isAscii';
 import PasswordInput from '../components/PasswordInput';
 
 class PasswordValidator extends React.Component {
@@ -7,17 +6,20 @@ class PasswordValidator extends React.Component {
     super(props);
     this.minLength = 8;
     this.maxLength = 64;
+    this.errorMessages = {
+      length: 'Password must be between 8 and 64 characters.',
+      characters: 'Password must contain only ASCII characters',
+      unique: 'Please choose a more unique password',
+    };
+    this.successMessage = 'That is a darn good password right there';
     this.state = {
       commonPasswords: [],
       password: '',
-      message: '',
+      errors: [],
     };
 
-    this.checkPassword = this.checkPassword.bind(this);
+    this.validatePassword = this.validatePassword.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.minimumCharacterCheck = this.minimumCharacterCheck.bind(this);
-    this.asciiCharacterCheck = this.asciiCharacterCheck.bind(this);
-    this.commonPasswordCheck = this.commonPasswordCheck.bind(this);
   }
 
   componentDidMount() {
@@ -31,34 +33,24 @@ class PasswordValidator extends React.Component {
     this.setState({ commonPasswords });
   }
 
-  checkPassword(e) {
+  validatePassword(e) {
     e.preventDefault();
-    this.minimumCharacterCheck();
-    this.asciiCharacterCheck();
-    this.commonPasswordCheck();
-  }
-
-  minimumCharacterCheck() {
-    const { password } = this.state;
-    let message;
-    if (password.length < this.minLength || password.length > this.maxLength) {
-      message = 'Password must be between 8 and 64 characters.';
-    }
-    this.setState({ message });
-  }
-
-  asciiCharacterCheck() {
-    const { password } = this.state;
-    if (!isAscii(password)) {
-      this.setState({ message: 'Password must contain only ASCII characters.' });
-    }
-  }
-
-  commonPasswordCheck() {
     const { password, commonPasswords } = this.state;
-    if (commonPasswords.includes(password)) {
-      this.setState({ message: 'Please choose a more unique password.' });
+    const errArray = [];
+    const ascii = /^[ -~]+$/;
+    if ((password.length < this.minLength) || (password.length > this.maxLength)) {
+      errArray.push(this.errorMessages.length);
     }
+    if (!ascii.test(password)) {
+      errArray.push(this.errorMessages.characters);
+    }
+    if (commonPasswords.includes(password)) {
+      errArray.push(this.errorMessages.unique);
+    }
+    if (errArray.length === 0) {
+      errArray.push(this.successMessage);
+    }
+    this.setState({ errors: errArray });
   }
 
   handleChange(e) {
@@ -67,16 +59,20 @@ class PasswordValidator extends React.Component {
   }
 
   render() {
-    const { password, message } = this.state;
+    const { password, errors } = this.state;
     return (
-      <>
-        <PasswordInput
-          checkPassword={this.checkPassword}
-          password={password}
-          onChange={this.handleChange}
-        />
-        {message}
-      </>
+      <div className="passwordValidator">
+        <div className="passwordValidatorInput">
+          <PasswordInput
+            validatePassword={this.validatePassword}
+            password={password}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="passwordValidator__message">
+          {errors.map((error, i) => <span key={i}>{error}</span>)}
+        </div>
+      </div>
     );
   }
 }

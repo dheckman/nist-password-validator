@@ -1,10 +1,10 @@
 import React from 'react';
 
 const PasswordInput = (props) => {
-  const { password, checkPassword, onChange } = props;
+  const { password, validatePassword, onChange } = props;
   return (
-    <form>
-      Password:
+    <>
+      <span className="passwordValidatorInput__label">Password:</span>
       <input
         type="text"
         autoComplete="off"
@@ -12,9 +12,10 @@ const PasswordInput = (props) => {
         onChange={onChange}
         value={password}
         required
+        className="passwordValidatorInput__input"
       />
-      <input type="submit" value="Check" onClick={checkPassword} />
-    </form>
+      <input type="submit" value="CHECK" onClick={validatePassword} className="passwordValidatorInput__button" />
+    </>
   );
 };
 

@@ -1,11 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: `${__dirname}/app/index.html`,
-  filename: 'index.html',
-  inject: 'body',
-});
 
 module.exports = {
   entry: './app/index.jsx',
@@ -21,8 +14,8 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.(|css|)$/,
-        loaders: ['css-loader', 'style-loader'],
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -33,6 +26,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  // plugins: [HTMLWebpackPluginConfig],
   mode: 'development',
 };

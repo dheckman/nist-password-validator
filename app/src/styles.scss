@@ -1,0 +1,60 @@
+$standardFontColor: #152235;
+$blueFont: #0c6bed;
+$white: #fff;
+
+body {
+  font-family: Helvetica Neue, Arial, sans-serif;
+}
+
+.passwordValidatorTitle {
+  color: $blueFont;
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+}
+
+#passwordValidatorContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.passwordValidator {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 400px;
+}
+
+.passwordValidatorInput {
+  display: flex;
+  width: 100%;
+}
+
+.passwordValidatorInput__label {
+  align-items: center;
+  display: flex;
+}
+
+.passwordValidatorInput__input {
+  margin-left: 5px;
+  width: 100%;
+}
+
+.passwordValidatorInput__button {
+  background-color: $blueFont;
+  border-radius: 3px;
+  color: $white;
+  display: flex;
+  letter-spacing: 1px;
+  margin: 0 5px;
+  padding: 11px 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.passwordValidator__message {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
