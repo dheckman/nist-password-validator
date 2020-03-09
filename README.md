@@ -13,7 +13,29 @@ Passwords MUST
 4. Not be a common password
 
 ## About this project
-The form accepts a password and notifies the user if it's NIST compliant according to their guidelines. I used React + Sass + Jest/Enzyme (for testing). 
+The form accepts a password and notifies the user whether or not it's NIST compliant according to their guidelines. I used React + Sass + Jest/Enzyme (for testing). 
+
+## Running the local server
+
+### System Requirments
+
+* node v8.10.0+
+* npm v5.0.0+
+
+### To install and run
+
+```sh
+$ git clone <url>
+$ cd to repo
+$ npm install
+$ yarn watch
+# or 
+$ npm run watch
+$ open another terminal tab
+$ node server.js
+
+Server will be available at http://localhost:3000/ and the ./app directory will be mounted to '/'.
+```
 
 ## Todo:
 Better testing!
@@ -30,23 +52,3 @@ Feel free to use any tooling/libraries you'd like, but focus on meeting the func
 
 Treat this project as if it was an open source utility that you were going to distribute. Things like writing tests, a README with what it does, how to use it and how to build it locally.
 
-## Running the local server
-
-### System Requirments
-
-* node v8.10.0+
-* npm v5.0.0+
-
-### Run
-
-```
-npm install
-npm run watch
-and in a new window:
-node server.js // bootup server
-
-To run tests:
-npm run test
-```
-
-Server will be available at http://localhost:3000/ and the ./app directory will be mounted to '/'.
