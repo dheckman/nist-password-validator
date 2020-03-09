@@ -12,9 +12,11 @@ Passwords MUST
 2. Allow all ASCII characters and spaces (unicode optional)
 4. Not be a common password
 
-# Project
+## About this project
+The form accepts a password and notifies the user if it's NIST compliant according to their guidelines. I used React + Sass + Jest/Enzyme (for testing). 
 
-We want a simple webpage to check if a password is NIST compliant for anyone to use. The only way for users to trust that we are not harvesting their passwords is to have the validator run completely in the browser. We will define NIST compliant as having an 8 character minimum, 64 character maximum, contains only ASCII characters, and not in the common password collection supplied by the local server at http://localhost:3000/passwords. The user supplied passwords should never leave the window in any form (even encrypted). The collection of common passwords is loaded into memory by http://localhost:3000/passwords when the local server boots. Use this repo as boilerplate. Add whatever code/files are needed under ./app and do not edit server. Clone this repo as boilerplate for your solution.
+## Todo:
+Better testing!
 
 ## Requirements
 
@@ -39,7 +41,12 @@ Treat this project as if it was an open source utility that you were going to di
 
 ```
 npm install
+npm run watch
+and in a new window:
 node server.js // bootup server
+
+To run tests:
+npm run test
 ```
 
 Server will be available at http://localhost:3000/ and the ./app directory will be mounted to '/'.

@@ -9,7 +9,7 @@ const PasswordInput = (props) => {
         type="text"
         autoComplete="off"
         name="password"
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         value={password}
         required
         className="passwordValidatorInput__input"

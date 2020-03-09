@@ -72,9 +72,8 @@ class PasswordValidator extends React.Component {
     return true;
   }
 
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+  handleChange(password) {
+    this.setState({ password });
   }
 
   render() {
